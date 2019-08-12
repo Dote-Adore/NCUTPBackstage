@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# NCUTPBackstage
+﻿# NCUTPBackstage
 这是南大二手小程序的后台代码，用于处理管理平台规范，处理违规内容等
 =======
 # demo1
