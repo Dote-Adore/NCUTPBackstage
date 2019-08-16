@@ -111,8 +111,8 @@ const httpServer = (opts, data) => {
 
     method: opts.method,
     //默认地址
-    baseURL: 'https://www.ncutradingplatform.top/NCUTradingPlatform',
-    // baseURL: '/api',
+    // baseURL: 'https://www.ncutradingplatform.top/NCUTradingPlatform',
+    baseURL: '/api',
     url: opts.url,
     timeout: 60000,
     params: Object.assign(Public, data),

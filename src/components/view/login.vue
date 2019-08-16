@@ -1,9 +1,12 @@
 <template>
   <div>
     <div class="background">
-    <img class="image" v-bind:style="toFix"  src="https://ncutradingplatform.oss-cn-shanghai.aliyuncs.com/sucai/156263431482.jpg"/>
+    <img  v-bind:style="toFix"  :src="backgroundSrc"/>
     </div>
     <div class="loginContain">
+      <div>
+        <img :style="[loginBG,{left:windowWidth*(-0.15)+'px'},{top:windowHeight*(-0.3)+'px'} ]"  :src="backgroundSrc"/>
+      </div>
       <div class="title">
         南大咸鱼后台管理
       </div>
@@ -35,9 +38,18 @@ export default {
       toFix: {
         width: '100%'
       },
+      loginBG: {
+        position: 'absolute',
+        width: this.windowWidth + 'px',
+        left: 0,
+        zIndex: '-2',
+        opacity: 0.4,
+        filter: 'blur(20px) saturate(170%) brightness(200%)'
+      },
       user: '',
       password: '',
-      isloading: false
+      isloading: false,
+      backgroundSrc: 'https://ncutradingplatform.oss-cn-shanghai.aliyuncs.com/sucai/loginBackground.jpg'
     }
   },
   methods: {
@@ -51,9 +63,7 @@ export default {
         return
       }
       this.isloading = true
-      console.log('user:' + this.user + 'password:' + this.password)
       this.$http(this.$api.login, {user: this.user, password: this.password}).then((res) => {
-        console.log(res)
         if (res.success) {
           this.$message({
             message: '登录成功！',
@@ -76,6 +86,8 @@ export default {
       return (() => {
         var windowHeight = document.getElementsByClassName('background')[0].clientHeight
         var windowWidth = document.getElementsByClassName('background')[0].clientWidth
+        this.windowWidth = windowWidth
+        this.windowHeight = windowHeight
         if (windowHeight / 9 > windowWidth / 16) {
           this.toFix = {height: '100%'}
         } else {
@@ -89,32 +101,36 @@ export default {
 
 <style scoped>
   .background{
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     z-index: -1;
     overflow: hidden;
-  }
-  .image{
-    /*width: 100%;*/
+    top:0;
+    left: 0;
   }
   .loginContain{
     border-radius: 10px;
     top: 30%;
     width: 450px;
+    height: 260px;
     left: 0;
     position: absolute;
     background-color: white;
     text-align: center;
     margin-left: 15%;
-    z-index: 10;
+    z-index: 2;
     padding: 30px 20px 30px 20px ;
     box-shadow: 10px 10px 15px rgba(39, 39, 39, 0.24);
+    overflow: hidden;
+    background-color: white;
   }
   .title{
     margin: 20px;
     font-size: 30px;
     color: black;
+    opacity: 0.5;
+    font-weight: bold;
   }
   .icon{
     width: 20px;
@@ -133,6 +149,7 @@ export default {
   }
   input{
     background-color: white;
+    opacity: 0.4;
   }
   .loginBtn{
     font-size: 17px;
@@ -146,6 +163,7 @@ export default {
     transition: 0.3s;
   }
   .bottomBar {
+    z-index: 3;
     text-align: center;
     padding: 10px 0 10px 0;
     position: absolute;
@@ -153,5 +171,6 @@ export default {
     width: 100%;
     bottom: 0;
     background-color: ghostwhite;
+    opacity: 0.9;
   }
 </style>
