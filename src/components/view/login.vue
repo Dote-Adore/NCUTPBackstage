@@ -5,10 +5,10 @@
     </div>
     <div class="loginContain">
       <div>
-        <img :style="[loginBG,{left:windowWidth*(-0.15)+'px'},{top:windowHeight*(-0.3)+'px'} ]"  :src="backgroundSrc"/>
+        <img :style="[toFix,loginBG,{left:windowWidth*(-0.15)+'px'},{top:windowHeight*(-0.3)+'px'} ]"  :src="backgroundSrc"/>
       </div>
       <div class="title">
-        南大咸鱼后台管理
+        同学们的杂货铺
       </div>
       <div class="inputbox">
         <img class='icon' src="../../assets/icon/user.png"/>
@@ -21,7 +21,9 @@
       <el-button  type="primary" class="loginBtn" round @click="tologin" autofocus="true" :loading="isloading">登录</el-button>
     </div>
     <div class="bottomBar">
-
+      <div>
+        <img :style="[toFix,bottomBarBG,{bottom: (this.windowWidth / 16) >= (this.windowHeight / 9) ? (this.windowHeight - this.windowWidth / 16 * 9) + 'px' : '0px'}]"  :src="backgroundSrc"/>
+      </div>
       <el-link href="https://github.com/Dote-Adore/" target="_blank">关于作者 |</el-link>
       <el-link href="http://www.beian.miit.gov.cn/" target="_blank">赣ICP备19008853号</el-link>
     </div>
@@ -36,14 +38,20 @@ export default {
       windowWidth: document.body.offsetWidth,
       windowHeight: document.body.offsetHeight,
       toFix: {
-        width: '100%'
+        height: this.windowHeight + 'px'
       },
       loginBG: {
         position: 'absolute',
-        width: this.windowWidth + 'px',
         left: 0,
         zIndex: '-2',
         opacity: 0.4,
+        filter: 'blur(20px) saturate(170%) brightness(200%)'
+      },
+      bottomBarBG: {
+        position: 'absolute',
+        left: 0,
+        zIndex: '-3',
+        opacity: 0.2,
         filter: 'blur(20px) saturate(170%) brightness(200%)'
       },
       user: '',
@@ -89,12 +97,25 @@ export default {
         this.windowWidth = windowWidth
         this.windowHeight = windowHeight
         if (windowHeight / 9 > windowWidth / 16) {
-          this.toFix = {height: '100%'}
+          this.toFix = {height: windowHeight + 'px'}
         } else {
-          this.toFix = {width: '100%'}
+          this.toFix = {width: windowWidth + 'px'}
         }
       })()
     }
+  },
+  beforeCreate () {
+    setTimeout(() => {
+      var windowHeight = document.getElementsByClassName('background')[0].clientHeight
+      var windowWidth = document.getElementsByClassName('background')[0].clientWidth
+      this.windowWidth = windowWidth
+      this.windowHeight = windowHeight
+      if (windowHeight / 9 > windowWidth / 16) {
+        this.toFix = {height: windowHeight + 'px'}
+      } else {
+        this.toFix = {width: windowWidth + 'px'}
+      }
+    }, 1)
   }
 }
 </script>
@@ -112,7 +133,7 @@ export default {
   .loginContain{
     border-radius: 10px;
     top: 30%;
-    width: 450px;
+    width: 430px;
     height: 260px;
     left: 0;
     position: absolute;
@@ -120,17 +141,17 @@ export default {
     text-align: center;
     margin-left: 15%;
     z-index: 2;
-    padding: 30px 20px 30px 20px ;
-    box-shadow: 10px 10px 15px rgba(39, 39, 39, 0.24);
+    box-shadow: 0px 0px 20px rgba(20, 20, 20, 0.4);
     overflow: hidden;
     background-color: white;
   }
   .title{
     margin: 20px;
-    font-size: 30px;
+    font-size: 26px;
+    line-height: 30px;
+    height: 30px;
     color: black;
     opacity: 0.5;
-    font-weight: bold;
   }
   .icon{
     width: 20px;
@@ -144,7 +165,7 @@ export default {
     margin: 10px 20% 10px 20%;
     border-width: 0 0 1px 0;
     border-style: solid;
-    border-color: #EFEFEF;
+    border-color: rgba(239, 239, 239, 0.37);
     padding: 10px 0 10px 0;
   }
   input{
@@ -167,10 +188,11 @@ export default {
     text-align: center;
     padding: 10px 0 10px 0;
     position: absolute;
-    height: 50px;
+    height: 40px;
     width: 100%;
     bottom: 0;
     background-color: ghostwhite;
-    opacity: 0.9;
+    overflow: hidden;
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.12);
   }
 </style>
