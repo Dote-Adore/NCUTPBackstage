@@ -31,6 +31,14 @@ const serviceModule = {
   handleReport: {
     url: 'report/handle',
     method: 'post'
+  },
+  getReportRes: {
+    url: 'report/getres',
+    method: 'get'
+  },
+  getViolationRes: {
+    url: 'violation/getres',
+    method: 'get'
   }
 }
 const ApiSetting = {

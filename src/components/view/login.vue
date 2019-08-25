@@ -45,14 +45,14 @@ export default {
         left: 0,
         zIndex: '-2',
         opacity: 0.4,
-        filter: 'blur(20px) saturate(170%) brightness(200%)'
+        filter: 'blur(20px) saturate(120%) brightness(120%)'
       },
       bottomBarBG: {
         position: 'absolute',
         left: 0,
         zIndex: '-3',
         opacity: 0.2,
-        filter: 'blur(20px) saturate(170%) brightness(200%)'
+        filter: 'blur(20px) saturate(120%) brightness(120%)'
       },
       user: '',
       password: '',
