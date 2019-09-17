@@ -44,14 +44,14 @@ export default {
         position: 'absolute',
         left: 0,
         zIndex: '-2',
-        opacity: 0.4,
+        opacity: 0.5,
         filter: 'blur(20px) saturate(120%) brightness(120%)'
       },
       bottomBarBG: {
         position: 'absolute',
         left: 0,
         zIndex: '-3',
-        opacity: 0.2,
+        opacity: 0.5,
         filter: 'blur(20px) saturate(120%) brightness(120%)'
       },
       user: '',
